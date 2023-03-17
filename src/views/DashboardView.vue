@@ -48,7 +48,7 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h1>Welcome back Jim</h1>
+                        <h1>Bienvenido Yahir</h1>
                     </div>
                     <div class='card-body'>
                         <p>Your account type is: Administrator</p>
@@ -108,13 +108,13 @@ p {
 }
 
 a {
-    color: #3f84fc;
+    color: #dcfc3f;
     text-decoration: none;
     background-color: transparent;
 }
 
 a:hover {
-    color: #0458eb;
+    color: #09ff00;
     text-decoration: underline;
 }
 
@@ -205,7 +205,7 @@ h1, .h1 {
     top: 0;
     bottom: 0;
     overflow: auto;
-    background-color: #373193;
+    background-color: #933131;
 }
 
 .dashboard-compact .dashboard-nav {
@@ -243,7 +243,7 @@ h1, .h1 {
 }
 
 .dashboard-nav {
-    background-color: #443ea2;
+    background-color: #000000e6;
 }
 
 .dashboard-nav a {
