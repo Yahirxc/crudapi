@@ -7,25 +7,29 @@
           <table class="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>PkUsuario</th>
+                <th>User</th>
+                <th>Password</th>
+                <th>FechaRegistro</th>
+                <th>FkEmpleado</th>
+                <th>FkRol</th>
                 <th>Name</th>
-                <th>Proveedor</th>
-                <th>Precio</th>
-                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="articulo in articulos" :key="articulo.id">
-                <td>{{ articulo.id }}</td>
-                <td>{{ articulo.name }}</td>
-                <td>{{ articulo.proveedor }}</td>
-                <td>{{ articulo.precio }}</td>
+              <tr v-for="Usuarios in Usuarios" :key="Usuarios.PkUsuario">
+                <td>{{ Usuarios.pkUsuario }}</td>
+                <td>{{ Usuarios.user }}</td>
+                <td>{{ Usuarios.password }}</td>
+                <td>{{ Usuarios.fechaRegistro }}</td>
+                <td>{{ Usuarios.fkEmpleado }}</td>
+                <td>{{ Usuarios.fkRol }}</td>
                 <td>
                   <div class="btn-group" role="label" aria-label="">
                     <!-- |<router-link :to="{name:'editar',param:{id:articulo.id}}" class="btn btn-info">Editar</router-link> | -->
                     |<button
                       type="button"
-                      v-on:click="borrarArticulo(articulo.id)"
+                      v-on:click="borrarUsuario(Usuarios.PkUsuario)"
                       class="btn btn-danger"
                     >
                       Eliminar</button
@@ -45,24 +49,24 @@ import axios from "axios";
 export default {
   data() {
     return {
-      articulos: [],
+      Usuarios: [],
     };
   },
   created: function () {
-    this.consultarArticulos();
+    this.consultarUsuarios();
   },
   methods: {
-    consultarArticulos() {
-      axios.get("https://localhost:7053/articulos").then((result) => {
+    consultarUsuarios() {
+      axios.get("https://localhost:7241/Usuarios").then((result) => {
         console.log(result.data);
-        this.articulos = result.data;
+        this.Usuarios = result.data.result;
       });
     },
 
-    borrarArticulo(id) {
+    borrarUsuario(id) {
       console.log(id);
 
-      axios.delete("https://localhost:7053/articulos/borrar/" + id);
+      axios.delete("https://localhost:7241/Usuarios/borrar/" + id);
 
       window.location.href = "Listar";
     },
