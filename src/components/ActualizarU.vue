@@ -158,7 +158,7 @@ export default {
                 document.getElementById('alert2').style.display = "block";
                 this.bad = "No hay valor de ID"
             }
-
+          //tilin
 
         }
 
