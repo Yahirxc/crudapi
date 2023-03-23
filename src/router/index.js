@@ -55,6 +55,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component:CrearUsuario
     },
+    {
+      path: '/editar',
+      name: 'editar',
+      component: () => import('../components/ActualizarU.vue')
+    }
 
 
   ]
