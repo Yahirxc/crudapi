@@ -2,6 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import listarU from "../components/listarU.vue"
 import CrearUsuario from "../components/CrearUsuario.vue"
+import CrearE from '../components/CrearE.vue'
+import ListarE from "../components/ListarE.vue"
+import Empleado from "../views/EmpleadoView.vue"
+import CrearC from '../components/CrearC.vue'
+import ListarC from "../components/ListarC.vue"
+import cliente from "../views/ClientesView.vue"
+import crearD from '../components/CrearD.vue'
+import ListarD from "../components/ListarD.vue"
+import depa from "../views/DepartamentoView.vue"
+import crearR from '../components/CrearR.vue'
+import ListarR from "../components/ListarR.vue"
+import rol from "../views/RolView.vue"
+import crearP from '../components/CrearP.vue'
+import ListarP from "../components/ListarP.vue"
+import puesto from "../views/PuestoView.vue"
+import crearF from '../components/CrearF.vue'
+import ListarF from "../components/ListarF.vue"
+import fac from "../views/FacturaView.vue"
+
+
+
+
+
 
 
 
@@ -59,7 +82,163 @@ const router = createRouter({
       path: '/editar',
       name: 'editar',
       component: () => import('../components/ActualizarU.vue')
-    }
+    },
+
+    {
+      path: '/listarE',
+      name: 'listarE',
+      component:ListarE
+    },
+    {
+      path: '/crearE',
+      name: 'crearE',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:CrearE
+    },
+
+    {
+      path: '/editarE',
+      name: 'editarE',
+      component: () => import('../components/ActualizarE.vue')
+    },
+
+    {
+      path: '/empleado',
+      name: 'empleado',
+      component:Empleado
+    },
+    {
+      path: '/listarC',
+      name: 'listarC',
+      component:ListarC
+    },
+    {
+      path: '/crearC',
+      name: 'crearC',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:CrearC
+    },
+
+    {
+      path: '/editarC',
+      name: 'editarC',
+      component: () => import('../components/ActualizarE.vue')
+    },
+
+    {
+      path: '/cliente',
+      name: 'cliente',
+      component:cliente
+    },
+
+    {
+      path: '/listarD',
+      name: 'listarD',
+      component:ListarD
+    },
+    {
+      path: '/crearD',
+      name: 'crearD',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:crearD
+    },
+
+    {
+      path: '/editarD',
+      name: 'editarD',
+      component: () => import('../components/ActualizarD.vue')
+    },
+
+    {
+      path: '/depa',
+      name: 'depa',
+      component:depa
+    },
+    {
+      path: '/listarR',
+      name: 'listarR',
+      component:ListarR
+    },
+    {
+      path: '/crearR',
+      name: 'crearR',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:crearR
+    },
+
+    {
+      path: '/editarR',
+      name: 'editarR',
+      component: () => import('../components/ActualizarR.vue')
+    },
+
+    {
+      path: '/rol',
+      name: 'rol',
+      component:rol
+    },
+    {
+      path: '/listarP',
+      name: 'listarP',
+      component:ListarP
+    },
+    {
+      path: '/crearP',
+      name: 'crearP',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:crearP
+    },
+
+    {
+      path: '/editarP',
+      name: 'editarP',
+      component: () => import('../components/ActualizarR.vue')
+    },
+
+    {
+      path: '/puesto',
+      name: 'puesto',
+      component:puesto
+    },
+    {
+      path: '/listarF',
+      name: 'listarF',
+      component:ListarF
+    },
+    {
+      path: '/crearF',
+      name: 'crearF',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component:crearF
+    },
+
+    {
+      path: '/editarF',
+      name: 'editarF',
+      component: () => import('../components/ActualizarF.vue')
+    },
+
+    {
+      path: '/fac',
+      name: 'fac',
+      component:fac
+    },
+
+    
+
+    
 
 
   ]

@@ -1,8 +1,7 @@
 
 <script setup>
-  import listarU from "../components/listarU.vue"
-  import ListarE from "../components/ListarE.vue"
 
+  import ListarF from "../components/ListarF.vue"
   </script>
 <template>
   <html>
@@ -21,7 +20,7 @@
     </header>
 
     <nav class="admin__sidepanel">
-      <ul>
+        <ul>
         <li>
           <RouterLink to="/dashboard">Usuario</RouterLink>
         </li>
@@ -47,7 +46,7 @@
     </nav>
     <div id="dashboard">
         <main>
-		<listarU/>
+		<ListarF/>
         
 	</main>
     </div>

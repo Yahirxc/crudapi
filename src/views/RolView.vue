@@ -1,8 +1,7 @@
 
 <script setup>
-  import listarU from "../components/listarU.vue"
-  import ListarE from "../components/ListarE.vue"
 
+  import ListarR from "../components/ListarR.vue"
   </script>
 <template>
   <html>
@@ -32,22 +31,22 @@
           <RouterLink to="/cliente">cliente</RouterLink>
         </li>
         <li>
-          <RouterLink to="/depa">Departamento</RouterLink>
+            <RouterLink to="/depa">Departamento</RouterLink>
         </li>
         <li>
-          <RouterLink to="/rol">Rol</RouterLink>
+            <RouterLink to="/depa">Departamento</RouterLink>
         </li>
         <li>
-            <RouterLink to="/puesto">puesto</RouterLink>
+            <RouterLink to="/depa">Departamento</RouterLink>
         </li>
         <li>
-            <RouterLink to="/fac">factura</RouterLink>
+            <RouterLink to="/depa">Departamento</RouterLink>
         </li>
       </ul>
     </nav>
     <div id="dashboard">
         <main>
-		<listarU/>
+		<ListarR/>
         
 	</main>
     </div>

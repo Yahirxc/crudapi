@@ -89,7 +89,7 @@ export default {
               fkRol: this.Usuarios.fkRol
           };
 
-          axios.post('https://localhost:7051/Usuario', cuerpo).then((result) => {
+          axios.post('https://localhost:7241/Usuarios', cuerpo).then((result) => {
 
               if (result.status == 200) {
                   document.getElementById("alert").style.display = "block";
@@ -98,7 +98,7 @@ export default {
                   document.getElementById('finaliza').style.display="block";
                   console.log(result);
               }
-              // window.location.href = "dashboard";
+              window.location.href = "dashboard";
 
           })
       }
