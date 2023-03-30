@@ -17,7 +17,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="rol in rol" :key="rol.PkRol">
+                <tr v-for="rol in rol" :key="rol.PkRol" v-on:click="editar(rol.pkRol)">
                     <td>{{ rol.pkRol }}</td>
                     <td>{{ rol.nombre }}</td>
                     
@@ -114,6 +114,9 @@
         // console.log(result.data.result);
         window.location.href = "rol";
       },
+      editar(pkRol){
+          this.$router.push("/editarR/" + pkRol);
+        }
       
     },
   };

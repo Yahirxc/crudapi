@@ -22,7 +22,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="fac in fac" :key="fac.PkFactura">
+                <tr v-for="fac in fac" :key="fac.PkFactura" v-on:click="editar(fac.pkFactura)">
                 <td>{{ fac.pkFactura }}</td>
                 <td>{{ fac.razonSocial }}</td>
                 <td>{{ fac.fecha }}</td>
@@ -118,6 +118,9 @@
   
       window.location.href = "fac";
     },
+    editar(pkFactura){
+          this.$router.push("/editarF/" + pkFactura);
+    }
   },
   };
   </script>

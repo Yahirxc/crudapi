@@ -31,16 +31,16 @@
           <RouterLink to="/cliente">cliente</RouterLink>
         </li>
         <li>
-            <RouterLink to="/depa">Departamento</RouterLink>
+          <RouterLink to="/depa">Departamento</RouterLink>
         </li>
         <li>
-            <RouterLink to="/rol">rol</RouterLink>
+          <RouterLink to="/rol">Rol</RouterLink>
         </li>
         <li>
-            <RouterLink to="/depa">Departamento</RouterLink>
+            <RouterLink to="/puesto">puesto</RouterLink>
         </li>
         <li>
-            <RouterLink to="/depa">Departamento</RouterLink>
+            <RouterLink to="/fac">factura</RouterLink>
         </li>
       </ul>
     </nav>

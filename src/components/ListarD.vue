@@ -17,7 +17,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="depa in depa" :key="depa.PkDepartamento">
+                <tr v-for="depa in depa" :key="depa.PkDepartamento" v-on:click="editar(depa.pkDepartamento)">
                     <td>{{ depa.pkDepartamento }}</td>
                     <td>{{ depa.nombre }}</td>
                     
@@ -89,7 +89,6 @@
   
   <script>
  import axios from "axios";
-  import {RouterView} from 'vue-router';
   export default {
     data() {
       return {
@@ -114,6 +113,9 @@
         // console.log(result.data.result);
         window.location.href = "depa";
       },
+      editar(pkDepartamento){
+          this.$router.push("/editarD/" + pkDepartamento);
+        }
       
     },
   };

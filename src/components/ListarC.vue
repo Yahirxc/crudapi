@@ -19,7 +19,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="cliente in cliente" :key="cliente.PkCliente">
+                <tr v-for="cliente in cliente" :key="cliente.PkCliente" v-on:click="editar(cliente.pkCliente)">
                     <td>{{ cliente.pkCliente }}</td>
                     <td>{{ cliente.nombre }}</td>
                     <td>{{ cliente.apellido }}</td>
@@ -119,6 +119,9 @@
         // console.log(result.data.result);
         window.location.href = "cliente";
       },
+      editar(pkCliente){
+          this.$router.push("/editarC/" + pkCliente);
+   }
       
     },
   };

@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="empleado in empleado" :key="empleado.PkEmpleado">
+                <tr v-for="empleado in empleado" :key="empleado.PkEmpleado" v-on:click="editar(empleado.pkEmpleado)">
                 <td>{{ empleado.pkEmpleado }}</td>
                 <td>{{ empleado.nombre }}</td>
                 <td>{{ empleado.apellidos }}</td>
@@ -122,6 +122,9 @@
   
       window.location.href = "dashboard";
     },
+    editar(pkEmpleado){
+          this.$router.push("/editarE/" + pkEmpleado);
+        }
   },
   };
   </script>

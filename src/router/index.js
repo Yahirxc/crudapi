@@ -100,7 +100,7 @@ const router = createRouter({
     },
 
     {
-      path: '/editarE',
+      path: '/editarE/:pkEmpleado',
       name: 'editarE',
       component: () => import('../components/ActualizarE.vue')
     },
@@ -125,9 +125,9 @@ const router = createRouter({
     },
 
     {
-      path: '/editarC',
+      path: '/editarC/:pkCliente',
       name: 'editarC',
-      component: () => import('../components/ActualizarE.vue')
+      component: () => import('../components/ActualizarC.vue')
     },
 
     {
@@ -151,7 +151,7 @@ const router = createRouter({
     },
 
     {
-      path: '/editarD',
+      path: '/editarD/:pkDepartamento',
       name: 'editarD',
       component: () => import('../components/ActualizarD.vue')
     },
@@ -176,7 +176,7 @@ const router = createRouter({
     },
 
     {
-      path: '/editarR',
+      path: '/editarR/:pkRol',
       name: 'editarR',
       component: () => import('../components/ActualizarR.vue')
     },
@@ -226,7 +226,7 @@ const router = createRouter({
     },
 
     {
-      path: '/editarF',
+      path: '/editarF/:pkFactura',
       name: 'editarF',
       component: () => import('../components/ActualizarF.vue')
     },

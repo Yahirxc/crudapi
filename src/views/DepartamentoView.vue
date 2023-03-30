@@ -22,7 +22,7 @@
     <nav class="admin__sidepanel">
       <ul>
         <li>
-            <RouterLink to="/dashboard">Usuario</RouterLink>
+          <RouterLink to="/dashboard">Usuario</RouterLink>
         </li>
         <li>
           <RouterLink to="/empleado">Empleado</RouterLink>
@@ -32,6 +32,15 @@
         </li>
         <li>
           <RouterLink to="/depa">Departamento</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/rol">Rol</RouterLink>
+        </li>
+        <li>
+            <RouterLink to="/puesto">puesto</RouterLink>
+        </li>
+        <li>
+            <RouterLink to="/fac">factura</RouterLink>
         </li>
       </ul>
     </nav>

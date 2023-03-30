@@ -16,7 +16,7 @@
                 placeholder="Nombre"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa el nombre del usuario</small
+                >Ingresa el nombre del Rol</small
               >
             </div>
            
@@ -24,7 +24,7 @@
             <br />
   
             <div class="btn-group" role="group">
-              <button type="submit" class="btn btn-success" v-on:click="editar(pkDepartamento)">Editar</button>
+              <button type="submit" class="btn btn-success" v-on:click="editar()">Editar</button>
               <router-link to="/dashboard" class="btn btn-danger"
                 >Cancelar</router-link
               >
@@ -41,7 +41,7 @@
   export default {
     data() {
       return {
-        depa: null,
+        rol: null,
         form:{
           "nombre":"",
           
@@ -50,17 +50,17 @@
     },
     methods:{
       editar(){
-        axios.put("https://localhost:7241/Departamento" + this.depa, this.form)
+        axios.put("https://localhost:7241/Rol/" + this.rol, this.form)
         .then(data =>{
           console.log(data);
         });
-        this.$router.push("/ListarD");
+        this.$router.push("/ListarR");
       }
     },
     mounted:function(){
-      this.depa = this.$route.params.pkDepartamento;
-      console.log(this.cliente);
-      axios.get("https://localhost:7241/Departamento/" + this.depa)
+      this.rol = this.$route.params.pkRol;
+      console.log(this.rol);
+      axios.get("https://localhost:7241/Rol/" + this.rol)
       .then(datos =>{
         console.log(datos);
         this.form.nombre = datos.data.value.result.nombre;

@@ -16,7 +16,7 @@
                 placeholder="Nombre"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa el nombre del usuario</small
+                >Ingresa el nombre del Departamento</small
               >
             </div>
            
@@ -24,7 +24,7 @@
             <br />
   
             <div class="btn-group" role="group">
-              <button type="submit" class="btn btn-success" v-on:click="editar(pkDepartamento)">Editar</button>
+              <button type="submit" class="btn btn-success" v-on:click="editar()">Editar</button>
               <router-link to="/dashboard" class="btn btn-danger"
                 >Cancelar</router-link
               >
@@ -37,7 +37,6 @@
   
   <script>
   import axios from "axios";
-  import {RouterView} from 'vue-router';
   export default {
     data() {
       return {
@@ -50,7 +49,7 @@
     },
     methods:{
       editar(){
-        axios.put("https://localhost:7241/Departamento" + this.depa, this.form)
+        axios.put("https://localhost:7241/Departamento/" + this.depa, this.form)
         .then(data =>{
           console.log(data);
         });
@@ -59,7 +58,7 @@
     },
     mounted:function(){
       this.depa = this.$route.params.pkDepartamento;
-      console.log(this.cliente);
+      console.log(this.depa);
       axios.get("https://localhost:7241/Departamento/" + this.depa)
       .then(datos =>{
         console.log(datos);

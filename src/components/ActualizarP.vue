@@ -16,7 +16,7 @@
                 placeholder="Nombre"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa el nombre del usuario</small
+                >Ingresa el nombre del Puesto</small
               >
             </div>
            
@@ -37,7 +37,7 @@
   
   <script>
  import axios from "axios";
-import {RouterView} from 'vue-router';
+
 export default {
   data() {
     return {
