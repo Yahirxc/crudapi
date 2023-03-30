@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             
-              <tr v-for="Usuarios in Usuarios" :key="Usuarios.PkUsuario">
+              <tr v-for="Usuarios in Usuarios" :key="Usuarios.PkUsuario" v-on:click="editar(Usuarios.pkUsuario)">
               <td>{{ Usuarios.pkUsuario }}</td>
               <td>{{ Usuarios.user }}</td>
               <td>{{ Usuarios.password }}</td>
@@ -42,7 +42,7 @@
                 </div>
               </td>
               <td>
-                <router-link to="/editar" class="btn btn-warning">Editar</router-link>
+                <router-link to="/editaru" class="btn btn-warning">Editar</router-link>
               </td>
             </tr>
 
@@ -119,6 +119,9 @@ methods: {
 
     window.location.href = "dashboard";
   },
+  editar(pkUsuario){
+          this.$router.push("/editaru/" + pkUsuario);
+   }
 },
 };
 </script>

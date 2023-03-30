@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="card">
-        <div class="card-header">Editar Departamento</div>
+        <div class="card-header">Editar Puesto</div>
         <div class="card-body">
           <form>
             <div class="form-group">
@@ -24,8 +24,8 @@
             <br />
   
             <div class="btn-group" role="group">
-              <button type="submit" class="btn btn-success" v-on:click="editar(pkDepartamento)">Editar</button>
-              <router-link to="/dashboard" class="btn btn-danger"
+              <button type="submit" class="btn btn-success" v-on:click="editar()">Editar</button>
+              <router-link to="/puesto" class="btn btn-danger"
                 >Cancelar</router-link
               >
             </div>
@@ -36,37 +36,35 @@
   </template>
   
   <script>
-  import axios from "axios";
-  import {RouterView} from 'vue-router';
-  export default {
-    data() {
-      return {
-        depa: null,
-        form:{
-          "nombre":"",
-          
-        }
-      };
-    },
-    methods:{
-      editar(){
-        axios.put("https://localhost:7241/Departamento" + this.depa, this.form)
-        .then(data =>{
-          console.log(data);
-        });
-        this.$router.push("/ListarD");
+ import axios from "axios";
+import {RouterView} from 'vue-router';
+export default {
+  data() {
+    return {
+      puesto: null,
+      form:{
+        "nombre":""
       }
-    },
-    mounted:function(){
-      this.depa = this.$route.params.pkDepartamento;
-      console.log(this.cliente);
-      axios.get("https://localhost:7241/Departamento/" + this.depa)
-      .then(datos =>{
-        console.log(datos);
-        this.form.nombre = datos.data.value.result.nombre;
-        
-        console.log(this.form);
-      })
+    };
+  },
+  methods:{
+    editar(){
+      axios.put("https://localhost:7241/Puesto/" + this.puesto, this.form)
+      .then(data =>{
+        console.log(data);
+      });
+      this.$router.push("/puesto");
     }
-  };
+  },
+  mounted:function(){
+    this.puesto = this.$route.params.pkpuesto;
+    console.log(this.puesto);
+    axios.get("https://localhost:7241/Puesto/" + this.puesto)
+    .then(datos =>{
+      console.log(datos);
+      this.form.nombre = datos.data.value.result.nombre;
+      console.log(this.form);
+    })
+  }
+};
   </script>

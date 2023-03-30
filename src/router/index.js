@@ -20,6 +20,7 @@ import puesto from "../views/PuestoView.vue"
 import crearF from '../components/CrearF.vue'
 import ListarF from "../components/ListarF.vue"
 import fac from "../views/FacturaView.vue"
+import editar from "../components/ActualizarU.vue"
 
 
 
@@ -79,9 +80,9 @@ const router = createRouter({
       component:CrearUsuario
     },
     {
-      path: '/editar',
-      name: 'editar',
-      component: () => import('../components/ActualizarU.vue')
+      path: '/editaru/:pkUsuario',
+      name: 'editaru',
+      component: editar
     },
 
     {
@@ -200,9 +201,9 @@ const router = createRouter({
     },
 
     {
-      path: '/editarP',
+      path: '/editarP/:pkpuesto',
       name: 'editarP',
-      component: () => import('../components/ActualizarR.vue')
+      component: () => import('../components/ActualizarP.vue')
     },
 
     {

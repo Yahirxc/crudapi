@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="card">
-        <div class="card-header">Editar Departamento</div>
+        <div class="card-header">Editar Departamento si</div>
         <div class="card-body">
           <form>
             <div class="form-group">

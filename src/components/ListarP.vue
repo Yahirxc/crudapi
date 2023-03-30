@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="card">
-        <router-link to="/crearP" class="btn btn-success">Crear Departamento</router-link>
+        <router-link to="/crearP" class="btn btn-success">Crear Puesto</router-link>
         <div class="card-header">puesto</div>
   
         <div class="card_body">
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
               
-                <tr v-for="puesto in puesto" :key="puesto.PkPuesto">
+                <tr v-for="puesto in puesto" :key="puesto.PkPuesto" v-on:click="editar(puesto.pkpuesto)">
                     <td>{{ puesto.pkpuesto }}</td>
                     <td>{{ puesto.nombre }}</td>
                     
@@ -114,6 +114,9 @@
         // console.log(result.data.result);
         window.location.href = "puesto";
       },
+      editar(pkpuesto){
+          this.$router.push("/editarP/" + pkpuesto);
+        }
       
     },
   };

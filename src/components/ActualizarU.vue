@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card">
-      <div class="card-header">Agregar usuario</div>
+      <div class="card-header">actualizar usuario</div>
       <div class="card-body">
         <form>
           <div class="form-group">
@@ -32,6 +32,21 @@
             />
             <small id="helpId" class="form-text" text-muted
               >Ingresa la contraseña</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="">Fecha de registro:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="fechaRegistro"
+              v-model="form.fechaRegistro"
+              aria-describedby="helpId"
+              id="fechaRegistro"
+              placeholder="Fecha de registro"
+            />
+            <small id="helpId" class="form-text" text-muted
+              >Ingresa el nombre del usuario</small
             >
           </div>
           <div class="form-group">
@@ -87,17 +102,18 @@ export default {
     return {
       usuari: null,
       form:{
-        "User":"",
-        "Password":"",
-        "FkEmpleado":"",
-        "FkRol":"",
+        "user":"",
+        "password":"",
+        "fechaRegistro":"",
+        "fkEmpleado":"",
+        "fkRol":"",
        
       }
     };
   },
   methods:{
     editar(){
-      this.usuari = this.$route.params.pkUsuario;
+     
       axios.put("https://localhost:7241/Usuarios/" + this.usuari, this.form)
       .then(data =>{
         console.log(data);
@@ -107,14 +123,15 @@ export default {
   },
   mounted:function(){
     this.usuari = this.$route.params.pkUsuario;
-    console.log(this.usuario);
+    console.log(this.usuari);
     axios.get("https://localhost:7241/Usuarios/" + this.usuari)
     .then(datos =>{
       console.log(datos);
-      this.form.User = datos.data.value.result.User;
-      this.form.Password = datos.data.value.result.Password;
-      this.form.FkEmpleado = datos.data.value.result.FkEmpleado;
-      this.form.FkRol = datos.data.value.result.FkRol;
+      this.form.user = datos.data.value.result.user;
+      this.form.password = datos.data.value.result.password;
+      this.form.fechaRegistro = datos.data.value.result.fechaRegistro;
+      this.form.fkEmpleado = datos.data.value.result.fkEmpleado;
+      this.form.fkRol = datos.data.value.result.fkRol;
       console.log(this.form);
     })
   }
