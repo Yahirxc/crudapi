@@ -1,125 +1,154 @@
 <template>
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">Crear Usuario</div>
-            <div class="card-body">
-                <form v-on:submit.prevent="formulario">
-                    <div class="row">
-                        <div class="col">
-  
-                            <div class="form-group">
-                                <label for="nombre">nombre:</label>
-                                <input type="text" class="form-control" name="nombre" aria-describedby="helpId" id="nombre"
-                                    placeholder="nombre" v-model="Empleado.nombre" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu nombre</small>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="apellidos">Apellido:</label>
-                                <input type="text" class="form-control" name="apellidos" id="apellidos"
-                                    aria-describedby="helpId" placeholder="apellidos" v-model="Empleado.apellidos" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu apellido</small>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <label for="direccion">direccion:</label>
-                                <input type="text" class="form-control" name="direccion" aria-describedby="helpId" id="direccion"
-                                    placeholder="direccion" v-model="Empleado.direccion" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu direccion</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="ciudad">ciudad:</label>
-                                <input type="text" class="form-control" name="ciudad" aria-describedby="helpId" id="ciudad"
-                                    placeholder="ciudad" v-model="Empleado.ciudad" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu ciudad</small>
-                            </div>
-  
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-  
-                            <div class="form-group">
-                                <label for="fkPuesto">fkpuesto:</label>
-                                <input type="number" class="form-control" name="fkPuesto" id="fkPuesto"
-                                    aria-describedby="helpId" placeholder="fkPuesto" v-model="Empleado.fkPuesto" />
-                            </div>
-                        </div>
-                        <div class="col">
-  
-                            <div class="form-group">
-                                <label for="fkDepartamento">fkDepartamento:</label>
-                                <input type="number" class="form-control" name="fkDepartamento" id="fkDepartamento" aria-describedby="helpId"
-                                    placeholder="fkDepartamento" v-model="Empleado.fkDepartamento" />
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="btn-group" role="group" id="botonesopcion">
-                            |<button type="submit" class="btn btn-outline-primary">Agregar</button>|
-                            |<router-link :to="{ name: 'listarE' }" class="btn btn-outline-danger">Cancelar</router-link>|
-                        </div>
-                        <router-link :to="{ name: 'listarE' }" class="btn btn-outline-primary" id="finaliza" style="display: none;">Finalizar</router-link>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div id="alert" style="display:none;" class="alert alert-success" role="alert">
-                            {{ smg }}
-                        </div>
-                    </div>
-                </form>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Agregar Empleado</div>
+        <div class="card-body">
+          <form v-on:submit.prevent="agregarRegistro">
+            <div class="form-group">
+              <label for="">Nombre:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                v-model="empleado.nombre"
+                aria-describedby="helpId"
+                id="nombre"
+                placeholder="Nombre"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
             </div>
+            <div class="form-group">
+              <label for="">apellidos:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="apellidos"
+                v-model="empleado.apellido"
+                aria-describedby="helpId"
+                id="apellidos"
+                placeholder="Apellidos"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div><div class="form-group">
+              <label for="">Direccion:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="direccion"
+                v-model="empleado.direccion"
+                aria-describedby="helpId"
+                id="direccion"
+                placeholder="Direccion"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div><div class="form-group">
+              <label for="">Ciudad:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="ciudad"
+                v-model="empleado.ciudad"
+                aria-describedby="helpId"
+                id="ciudad"
+                placeholder="ciudad"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+              <div class="form-group">
+         
+              <label for="puesto">Puesto</label>
+              <select class="form-control" name="puesto" id="puesto" v-model="empleado.fkPuesto">
+                <option v-for="puesto in puesto" :value="puesto.pkpuesto" :key="puesto.pkpuesto">{{puesto.nombre}}</option>
+              </select>
+            </div>
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            <div class="form-group">
+              <label for="departamento">Departamento</label>
+              <select class="form-control" name="departamento" id="departamento" v-model="empleado.fkDepartamento">
+                <option v-for="departamento in departamento" :value="departamento.pkDepartamento" :key="departamento.pkDepartamento">{{departamento.nombre}}</option>
+              </select>
+          
+            </div>
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div>
+            <br />
+  
+            <div class="btn-group" role="group">
+              <button type="submit" class="btn btn-success">Agregar</button>
+              <router-link to="/dashboard" class="btn btn-danger"
+                >Cancelar</router-link
+              >
+            </div>
+          </form>
         </div>
+      </div>
     </div>
   </template>
   
   <script>
-  import axios from 'axios';
+  import axios from "axios";
+  import {RouterView} from 'vue-router';
   export default {
-    name: "crearEmpleado",
-    components: {
-  
-    },
-  
     data() {
-        return {
-            Empleado: {},
-            smg: "",
-        };
+      return {
+        empleado: {
+          "pkEmpleado":"",
+          "nombre":"",
+          "apellido":"",
+          "direccion":"",
+          "ciudad":"",
+          "fkPuesto":"",
+          "fkDepartamento":""
+        },
+        departamento: {},
+        puesto: {}
+      };
+    },
+    created: function () {
+        this.consultarPuesto();
+        this.consultarDepartamento();    
     },
     methods: {
-        formulario() {
-           
-            var cuerpo = {
-                nombre: this.Empleado.nombre,
-                apellidos: this.Empleado.apellidos,
-                direccion: this.Empleado.direccion,
-                ciudad: this.Empleado.ciudad,
-                fkPuesto: this.Empleado.fkPuesto,
-                fkDepartamento: this.Empleado.fkDepartamento
-            };
+      agregarRegistro() {
+        console.log(this.empleado);
   
-            axios.post("https://localhost:7241/Empleado", cuerpo).then((result) => {
+        var datosEnviar = {
+          nombre: this.empleado.nombre,
+          apellido: this.empleado.apellido,
+          direccion: this.empleado.direccion,
+          ciudad: this.empleado.ciudad,
+          fkPuesto: this.empleado.fkPuesto,
+          fkDepartamento: this.empleado.fkDepartamento
+        };
   
-                if (result.status == 200) {
-                    document.getElementById("alert").style.display = "block";
-                    document.getElementById('botonesopcion').style.display="none";
-                    this.smg = "agregado exitosamente :D/";
-                    document.getElementById('finaliza').style.display="block";
-                    console.log(result);
-                }
-                window.location.href = "empleado";
-  
-            })
-        }
-    }
-  }
+        axios
+          .post("https://localhost:7241/Empleado", datosEnviar)
+          .then((result) => {
+            console.log(result.data.result);
+            window.location.href = "empleado";
+          });
+      },
+      consultarDepartamento() {
+             axios.get("https://localhost:7241/Departamento").then((result) => {
+               console.log(result.data.result);
+               this.departamento = result.data.result;});
+              },
+              consultarPuesto() {
+                axios.get("https://localhost:7241/Puesto").then((result) => {
+                  console.log(result.data.result);
+                  this.puesto = result.data.result;});
+                },
+    },
+  };
   </script>
-  
-  <style scoped>
-  label {
-    font-weight: bold;
-  }
-  </style>

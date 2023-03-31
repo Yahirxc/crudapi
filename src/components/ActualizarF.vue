@@ -59,7 +59,7 @@
   
             <div class="btn-group" role="group">
               <button type="submit" class="btn btn-success" v-on:click="editar()">Editar</button>
-              <router-link to="/dashboard" class="btn btn-danger"
+              <router-link to="/fac" class="btn btn-danger"
                 >Cancelar</router-link
               >
             </div>

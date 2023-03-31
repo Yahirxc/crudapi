@@ -1,108 +1,116 @@
 <template>
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">Crear Usuario</div>
-            <div class="card-body">
-                <form v-on:submit.prevent="formulario">
-                    <div class="row">
-                        <div class="col">
-  
-                            <div class="form-group">
-                                <label for="user">razonSocial:</label>
-                                <input type="text" class="form-control" name="user" aria-describedby="helpId" id="user"
-                                    placeholder="usuario" v-model="fac.razonSocial" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu correo electronico</small>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="password">Rfc:</label>
-                                <input type="text" class="form-control" name="password" id="password"
-                                    aria-describedby="helpId" placeholder="password" v-model="fac.rfc" />
-                                <small id="helpId" class="form-text" text-muted>Ingresa tu contraseña</small>
-                            </div>
-                        </div>
-  
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-  
-                            <div class="form-group">
-                                <label for="fkEmpleado">fkCliente:</label>
-                                <input type="number" class="form-control" name="fkEmpleado" id="fkEmpleado"
-                                    aria-describedby="helpId" placeholder="fkEmpleado" v-model="fac.fkCliente" />
-                            </div>
-                        </div>
-                        <div class="col">
-  
-                            
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="btn-group" role="group" id="botonesopcion">
-                            |<button type="submit" class="btn btn-outline-primary">Agregar</button>|
-                            |<router-link :to="{ name: 'listar' }" class="btn btn-outline-danger">Cancelar</router-link>|
-                        </div>
-                        <router-link :to="{ name: 'listar' }" class="btn btn-outline-primary" id="finaliza" style="display: none;">Finalizar</router-link>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div id="alert" style="display:none;" class="alert alert-success" role="alert">
-                            {{ smg }}
-                        </div>
-                    </div>
-                </form>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Agregar factura</div>
+        <div class="card-body">
+          <form v-on:submit.prevent="agregarRegistro">
+            <div class="form-group">
+              <label for="">Razon social:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="razonSocial"
+                v-model="factura.razonSocial"
+                aria-describedby="helpId"
+                id="razonSocial"
+                placeholder="Razon social"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa la razonSocial</small
+              >
             </div>
+            <div class="form-group">
+              <label for="">Fecha:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="fecha"
+                v-model="factura.fecha"
+                aria-describedby="helpId"
+                id="fecha"
+                placeholder="Fecha"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa la Fecha</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="">RFC:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                v-model="factura.rfc"
+                aria-describedby="helpId"
+                id="rfc"
+                placeholder="RFC"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el rfc</small
+              >
+              <div class="form-group">
+              <label for="cliente">Cliente</label>
+              <select class="form-control" name="cliente" id="cliente" v-model="factura.fkCliente">
+                <option v-for="cliente in cliente" :value="cliente.pkCliente" :key="cliente.pkCliente">{{cliente.nombre}}</option>
+              </select>
+              </div>
+            </div>
+            <br />
+  
+            <div class="btn-group" role="group">
+              <button type="submit" class="btn btn-success">Agregar</button>
+              <router-link to="/fac" class="btn btn-danger"
+                >Cancelar</router-link
+              >
+            </div>
+          </form>
         </div>
+      </div>
     </div>
   </template>
   
   <script>
-  import axios from 'axios';
+  import axios from "axios";
+  import {RouterView} from 'vue-router';
   export default {
-    name: "crearUser",
-    components: {
-  
-    },
-  
     data() {
-        return {
-            fac: {},
-            smg: "",
-        };
+      return {
+        factura: {
+          "pkFactura":"",
+                  "razonSocial":"",
+                  "fecha":"",
+                  "rfc":"",
+                  "fkCliente":"",
+        },
+        cliente: {}
+      };
     },
+    created: function () {
+        this.consultarCliente();
+      },
     methods: {
-        formulario() {
-            const tiempoTranscurrido = Date.now();
-            const hoy = new Date(tiempoTranscurrido);
-            var cuerpo = {
-                razonSocial: this.fac.razonSocial,
-                fecha: hoy.toISOString(),
-                rfc: this.fac.rfc,
-                fkCliente: this.fac.fkCliente
-            };
+      agregarRegistro() {
+        console.log(this.factura);
   
-            axios.post('https://localhost:7241/Factura', cuerpo).then((result) => {
+        var datosEnviar = {
+          razonSocial: this.factura.razonSocial,
+          fecha: this.factura.fecha,
+          rfc: this.factura.rfc,
+          fkCliente: this.factura.fkCliente
+        };
   
-                if (result.status == 200) {
-                    document.getElementById("alert").style.display = "block";
-                    document.getElementById('botonesopcion').style.display="none";
-                    this.smg = "agregado exitosamente :D/";
-                    document.getElementById('finaliza').style.display="block";
-                    console.log(result);
-                }
-                window.location.href = "fac";
-  
-            })
-        }
-    }
-  }
+        axios
+          .post("https://localhost:7241/Factura", datosEnviar)
+          .then((result) => {
+            console.log(result.data.result);
+            window.location.href = "fac";
+          });
+      },
+      consultarCliente() {
+            axios.get("https://localhost:7241/Cliente").then((result) => {
+            console.log(result.data.result);
+            this.cliente = result.data.result;});
+          },
+    },
+  };
   </script>
-  
-  <style scoped>
-  label {
-    font-weight: bold;
-  }
-  </style>

@@ -49,37 +49,21 @@
               >Ingresa el nombre del usuario</small
             >
           </div>
-          <div class="form-group">
-            <label for="">FkEmpleado:</label>
-            <input
-              type="text"
-              class="form-control"
-              name="FkEmpleado"
-              id="FkEmpleado"
-              v-model="form.fkEmpleado"
-              aria-describedby="helpId"
-              placeholder="FkEmpleado"
-            />
-            <small id="helpId" class="form-text" text-muted
-              >Ingresa el id del empleado</small
-            >
-          </div>
-          <div class="form-group">
-            <label for="">FkRol:</label>
-            <input
-              type="text"
-              class="form-control"
-              name="FkRol"
-              id="FkRol"
-              v-model="form.fkRol"
-              aria-describedby="helpId"
-              placeholder="FkRol"
-            />
-            <small id="helpId" class="form-text" text-muted
-              >Ingresa la id del Rol</small
-            >
-          </div>
          
+          <div class="form-group">
+           
+           <label for="puesto">Empleado</label>
+           <select class="form-control" name="puesto" id="puesto" v-model="form.fkEmpleado">
+             <option v-for="empleado in empleado" :value="empleado.pkEmpleado" :key="empleado.pkEmpleado">{{empleado.nombre}}</option>
+           </select>
+         </div>
+         <div class="form-group">
+           <label for="departamento">Rol</label>
+           <select class="form-control" name="departamento" id="departamento" v-model="form.fkRol">
+             <option v-for="Rol in Rol" :value="Rol.pkRol" :key="Rol.pkRol">{{Rol.nombre}}</option>
+           </select>
+
+         </div>
 
           <br />
 
@@ -108,9 +92,15 @@ export default {
         "fkEmpleado":"",
         "fkRol":"",
        
-      }
+      },
+      empleado:{},
+      Rol:{}
     };
   },
+  created: function () {
+        this.consultarE();
+        this.consultarR();    
+      },
   methods:{
     editar(){
      
@@ -119,7 +109,17 @@ export default {
         console.log(data);
       });
       this.$router.push("/dashboard");
-    }
+    },
+    consultarE() {
+                axios.get("https://localhost:7241/Empleado").then((result) => {
+                  console.log(result.data.result);
+                  this.empleado = result.data.result;});
+                },
+     consultarR() {
+             axios.get("https://localhost:7241/Rol").then((result) => {
+               console.log(result.data.result);
+               this.Rol = result.data.result;});
+              }
   },
   mounted:function(){
     this.usuari = this.$route.params.pkUsuario;

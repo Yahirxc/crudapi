@@ -66,31 +66,19 @@
               >
             </div>
             <div class="form-group">
-              <label for="">Puesto:</label>
-              <input
-                type="text"
-                class="form-control"
-                name="direccion"
-                id="direccion"
-                v-model="form.fkPuesto"
-                aria-describedby="helpId"
-                placeholder="Puesto"
-              />
-              <small id="helpId" class="form-text" text-muted
-                >Ingresa el puesto</small
-              >
-            </div>
-
-            <div class="form-group">
+           
               <label for="puesto">Puesto</label>
               <select class="form-control" name="puesto" id="puesto" v-model="form.fkPuesto">
                 <option v-for="puesto in puesto" :value="puesto.pkpuesto" :key="puesto.pkpuesto">{{puesto.nombre}}</option>
               </select>
-              <small id="helpId" class="form-text" text-muted
-                >Ingresa el Departamento</small
-              >
             </div>
-  
+            <div class="form-group">
+              <label for="departamento">Departamento</label>
+              <select class="form-control" name="departamento" id="departamento" v-model="form.fkDepartamento">
+                <option v-for="departamento in departamento" :value="departamento.pkDepartamento" :key="departamento.pkDepartamento">{{departamento.nombre}}</option>
+              </select>
+   
+            </div>
             <br />
   
             <div class="btn-group" role="group">
@@ -116,11 +104,17 @@
           "apellido":"",
           "direccion":"",
           "ciudad":"",
-          "fkPuesto":"",
+          "fkpuesto":"",
           "fkDepartamento":""
-        }
+        },
+        puesto:{},
+        departamento:{}
       };
     },
+    created: function () {
+        this.consultarPuesto();
+        this.consultarDepartamento();    
+      },
     methods:{
       editar(){
         axios.put("https://localhost:7241/Empleado/" + this.empleado, this.form)
@@ -133,10 +127,16 @@
                 axios.get("https://localhost:7241/Puesto").then((result) => {
                   console.log(result.data.result);
                   this.puesto = result.data.result;});
-                }
+                },
+                 consultarDepartamento() {
+             axios.get("https://localhost:7241/Departamento").then((result) => {
+               console.log(result.data.result);
+               this.departamento = result.data.result;});
+              }
+
     },
     mounted:function(){
-      this.empleado = this.$route.params.pkEmpleado; n  
+      this.empleado = this.$route.params.pkEmpleado;   
       console.log(this.empleado);
       axios.get("https://localhost:7241/Empleado/" + this.empleado )
       .then(datos =>{
@@ -145,8 +145,8 @@
         this.form.apellido = datos.data.value.result.apellidos;
         this.form.direccion = datos.data.value.result.direccion;
         this.form.ciudad = datos.data.value.result.ciudad;
-        this.form.fkPuesto = datos.data.value.result.fkPuesto;
-        this.form.fkDepartamento = datos.data.value.result.fkDepartamento;
+        this.form.fkpuesto = datos.data.value.result.puesto.pkpuesto;
+        this.form.fkDepartamento = datos.data.value.result.departamento.pkDepartamento;
         console.log(this.form);
       })
     }

@@ -1,113 +1,137 @@
 <template>
-  <div class="container-fluid">
+    <div class="container">
       <div class="card">
-          <div class="card-header">Crear Usuario</div>
-          <div class="card-body">
-              <form v-on:submit.prevent="formulario">
-                  <div class="row">
-                      <div class="col">
-
-                          <div class="form-group">
-                              <label for="user">user:</label>
-                              <input type="text" class="form-control" name="user" aria-describedby="helpId" id="user"
-                                  placeholder="usuario" v-model="Usuarios.user" />
-                              <small id="helpId" class="form-text" text-muted>Ingresa tu correo electronico</small>
-                          </div>
-                      </div>
-                      <div class="col">
-                          <div class="form-group">
-                              <label for="password">Password:</label>
-                              <input type="text" class="form-control" name="password" id="password"
-                                  aria-describedby="helpId" placeholder="password" v-model="Usuarios.password" />
-                              <small id="helpId" class="form-text" text-muted>Ingresa tu contraseña</small>
-                          </div>
-                      </div>
-
-                  </div>
-                  <br>
-                  <div class="row">
-                      <div class="col">
-
-                          <div class="form-group">
-                              <label for="fkEmpleado">fkEmpleado:</label>
-                              <input type="number" class="form-control" name="fkEmpleado" id="fkEmpleado"
-                                  aria-describedby="helpId" placeholder="fkEmpleado" v-model="Usuarios.fkEmpleado" />
-                          </div>
-                      </div>
-                      <div class="col">
-
-                          <div class="form-group">
-                              <label for="fkRol">fkRol:</label>
-                              <input type="number" class="form-control" name="fkRol" id="precio" aria-describedby="helpId"
-                                  placeholder="fkRol" v-model="Usuarios.fkRol" />
-                          </div>
-                      </div>
-                  </div>
-                  <br>
-                  <div class="row">
-                      <div class="btn-group" role="group" id="botonesopcion">
-                          |<button type="submit" class="btn btn-outline-primary">Agregar</button>|
-                          |<router-link :to="{ name: 'listar' }" class="btn btn-outline-danger">Cancelar</router-link>|
-                      </div>
-                      <router-link :to="{ name: 'listar' }" class="btn btn-outline-primary" id="finaliza" style="display: none;">Finalizar</router-link>
-                  </div>
-                  <br>
-                  <div class="row">
-                      <div id="alert" style="display:none;" class="alert alert-success" role="alert">
-                          {{ smg }}
-                      </div>
-                  </div>
-              </form>
-          </div>
+        <div class="card-header">Agregar usuario</div>
+        <div class="card-body">
+          <form v-on:submit.prevent="agregarRegistro">
+            <div class="form-group">
+              <label for="">User:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="user"
+                v-model="usuario.user"
+                aria-describedby="helpId"
+                id="user"
+                placeholder="User"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="">Password:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="password"
+                v-model="usuario.password"
+                aria-describedby="helpId"
+                id="password"
+                placeholder="Password"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="">Fecha de registro:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="fechaRegistro"
+                v-model="usuario.fechaRegistro"
+                aria-describedby="helpId"
+                id="fechaRegistro"
+                placeholder="Fecha de registro"
+              />
+              <small id="helpId" class="form-text" text-muted
+                >Ingresa el nombre del departamento</small
+              >
+            </div>
+            <div class="form-group">
+         
+         <label for="puesto">Empleado</label>
+         <select class="form-control" name="puesto" id="puesto" v-model="usuario.fkEmpleado">
+            <option v-for="empleado in empleado" :value="empleado.pkEmpleado" :key="empleado.pkEmpleado">{{empleado.nombre}}</option>
+         </select>
+       </div>
+         <small id="helpId" class="form-text" text-muted
+           >Ingresa el nombre del departamento</small
+         >
+       <div class="form-group">
+         <label for="departamento">rol</label>
+         <select class="form-control" name="departamento" id="departamento" v-model="usuario.fkRol">
+            <option v-for="Rol in Rol" :value="Rol.pkRol" :key="Rol.pkRol">{{Rol.nombre}}</option>
+         </select>
+     
+       </div>
+            <br />
+  
+            <div class="btn-group" role="group">
+              <button type="submit" class="btn btn-success">Agregar</button>
+              <router-link to="/dashboard" class="btn btn-danger"
+                >Cancelar</router-link
+              >
+            </div>
+          </form>
+        </div>
       </div>
-  </div>
-</template>
-
-<script>
-import axios from 'axios';
-export default {
-  name: "crearUser",
-  components: {
-
+    </div>
+  </template>
+  
+  <script>
+  
+  import axios from "axios";
+  export default {
+    data() {
+    return {
+      usuario: null,
+      form:{
+        "user":"",
+        "password":"",
+        "fechaRegistro":"",
+        "fkEmpleado":"",
+        "fkRol":"",
+       
+      },
+      empleado:{},
+      Rol:{}
+    };
   },
-
-  data() {
-      return {
-          Usuarios: {},
-          smg: "",
-      };
-  },
-  methods: {
-      formulario() {
-          const tiempoTranscurrido = Date.now();
-          const hoy = new Date(tiempoTranscurrido);
-          var cuerpo = {
-              user: this.Usuarios.user,
-              password: this.Usuarios.password,
-              fechaRegistro: hoy.toISOString(),
-              fkEmpleado: this.Usuarios.fkEmpleado,
-              fkRol: this.Usuarios.fkRol
-          };
-
-          axios.post('https://localhost:7241/Usuarios', cuerpo).then((result) => {
-
-              if (result.status == 200) {
-                  document.getElementById("alert").style.display = "block";
-                  document.getElementById('botonesopcion').style.display="none";
-                  this.smg = "agregado exitosamente :D/";
-                  document.getElementById('finaliza').style.display="block";
-                  console.log(result);
+  created: function () {
+        this.consultarE();
+        this.consultarR();    
+      },
+    methods: {
+      agregarRegistro() {
+        console.log(this.usuario);
+  
+        var datosEnviar = {
+            user: this.usuario.user,
+          password: this.usuario.password,
+          fechaRegistro: this.usuario.fechaRegistro,
+          fkEmpleado: this.usuario.fkEmpleado,
+          fkRol: this.usuario.fkRol
+        };
+  
+        axios
+          .post("https://localhost:7241/Usuarios", datosEnviar)
+          .then((result) => {
+            console.log(result.data.result);
+            window.location.href = "dashboard";
+          });
+      },
+      consultarE() {
+                axios.get("https://localhost:7241/Empleado").then((result) => {
+                  console.log(result.data.result);
+                  this.empleado = result.data.result;});
+                },
+     consultarR() {
+             axios.get("https://localhost:7241/Rol").then((result) => {
+               console.log(result.data.result);
+               this.Rol = result.data.result;});
               }
-              window.location.href = "dashboard";
-
-          })
-      }
-  }
-}
-</script>
-
-<style scoped>
-label {
-  font-weight: bold;
-}
-</style>
+    },
+  };
+  </script>

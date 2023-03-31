@@ -14,21 +14,21 @@
               <th>User</th>
               <th>Password</th>
               <th>FechaRegistro</th>
-              <th>FkEmpleado</th>
-              <th>FkRol</th>
+              <th>Empleado</th>
+              <th>Rol</th>
               <th>Eliminar</th>
               <th>Editar</th>
             </tr>
           </thead>
           <tbody>
             
-              <tr v-for="Usuarios in Usuarios" :key="Usuarios.PkUsuario" v-on:click="editar(Usuarios.pkUsuario)">
+              <tr v-for="Usuarios in Usuarios" :key="Usuarios.pkUsuario" v-on:click="editar(Usuarios.pkUsuario)">
               <td>{{ Usuarios.pkUsuario }}</td>
               <td>{{ Usuarios.user }}</td>
               <td>{{ Usuarios.password }}</td>
               <td>{{ Usuarios.fechaRegistro }}</td>
-              <td>{{ Usuarios.fkEmpleado }}</td>
-              <td>{{ Usuarios.fkRol }}</td>
+              <td>{{ Usuarios.empleado.nombre }}</td>
+                <td>{{ Usuarios.rol.nombre }}</td>
               <td>
                 <div class="btn-group" role="label" aria-label="">
                   <!-- |<router-link :to="{name:'editar',param:{id:articulo.id}}" class="btn btn-info">Editar</router-link> | -->

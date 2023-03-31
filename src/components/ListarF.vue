@@ -3,7 +3,7 @@
  
     <div>
       <div class="card">
-        <router-link to="/crearF" class="btn btn-success">Crear Usuario</router-link>
+        <router-link to="/crearF" class="btn btn-success">Crear Factura</router-link>
         <div class="card-header">Usuarios</div>
   
         <div class="card_body">
@@ -27,7 +27,7 @@
                 <td>{{ fac.razonSocial }}</td>
                 <td>{{ fac.fecha }}</td>
                 <td>{{ fac.rfc}}</td>
-                <td>{{ fac.fkCliente }}</td>
+                <td>{{ fac.cliente.nombre }}</td>
                 <td>
                   <div class="btn-group" role="label" aria-label="">
                     <!-- |<router-link :to="{name:'editar',param:{id:articulo.id}}" class="btn btn-info">Editar</router-link> | -->
